@@ -15,7 +15,7 @@ const GoalInput = (props) => {
         placeholder="目標を設定してください"
         style={styles.input}
         onChangeText={goalInputHander}
-        value={enterdGoal}
+        value={enterdGoal.toString()}
       />
 
       <Button title="追加" onPress={props.onAddGoal.bind(this, enterdGoal)} />
