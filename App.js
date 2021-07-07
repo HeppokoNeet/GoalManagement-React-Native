@@ -10,40 +10,26 @@ import {
   FlatList,
 } from 'react-native'
 
+import GoalItem from './components/GoalItem';
+import GoalInput from './components/GoalInput';
+
 export default function App() {
-  const [enterdGoal, setEnterdGoal] = useState('')
   const [courseGoals, setCourseGoals] = useState([])
 
-  const goalInputHander = (enterdText) => {
-    setEnterdGoal(enterdText)
-  }
-
-  const addGoalHander = () => {
+  const addGoalHander = goalTitle => {
     setCourseGoals((currentGoals) => [
       ...currentGoals,
-      { id: Math.random().toString(), value: enterdGoal },
+      { id: Math.random().toString(), value: goalTitle },
     ])
   }
 
   return (
     <View style={styles.screen}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder="目標を設定してください"
-          style={styles.input}
-          onChangeText={goalInputHander}
-        />
-
-        <Button title="追加" onPress={addGoalHander} />
-      </View>
+      <GoalInput onAddGoal={addGoalHander} />
       <FlatList
         keyExtractor={(item, index) => item.id}
         data={courseGoals}
-        renderItem={(itemData) => (
-          <View style={styles.listItem}>
-            <Text>{itemData.item.value}</Text>
-          </View>
-        )}
+        renderItem={itemData => <GoalItem title={itemData.item.value} />}
       />
     </View>
   )
@@ -52,23 +38,5 @@ export default function App() {
 const styles = StyleSheet.create({
   screen: {
     padding: 50,
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  input: {
-    width: '80%',
-    borderColor: 'black',
-    borderWidth: 1,
-    padding: 10,
-  },
-  listItem: {
-    padding: 10,
-    marginVertical: 10,
-    backgroundColor: '#ccc',
-    borderColor: 'black',
-    borderBottomWidth: 1,
-  },
+  }
 })
