@@ -10,27 +10,34 @@ export default function App() {
   const [isAddMode, setIsAddMode] = useState(false)
 
   const addGoalHander = (goalTitle) => {
+    if (goalTitle.length === 0) {
+      return
+    }
     setCourseGoals((currentGoals) => [
       ...currentGoals,
       { id: Math.random().toString(), value: goalTitle },
     ])
-    setIsAddMode(false);
+    setIsAddMode(false)
   }
 
   const removeGoalHandler = (goalId) => {
     setCourseGoals((currentGoals) => {
       return currentGoals.filter((goal) => goal.id !== goalId)
-    });
-  };
+    })
+  }
 
   const cancelGoalAdditionHandler = () => {
-    setIsAddMode(false);
+    setIsAddMode(false)
   }
 
   return (
     <View style={styles.screen}>
       <Button title="ゴールを追加する" onPress={() => setIsAddMode(true)} />
-      <GoalInput visible={isAddMode} onAddGoal={addGoalHander} onCancel={cancelGoalAdditionHandler} />
+      <GoalInput
+        visible={isAddMode}
+        onAddGoal={addGoalHander}
+        onCancel={cancelGoalAdditionHandler}
+      />
       <FlatList
         keyExtractor={(item, index) => item.id}
         data={courseGoals}

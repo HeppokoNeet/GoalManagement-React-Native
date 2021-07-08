@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import GoalItem from './GoalItem'
 import { View, TextInput, Button, StyleSheet, Modal } from 'react-native'
 
-const GoalInput = (props) => {
+const GoalInput = props => {
   const [enterdGoal, setEnterdGoal] = useState([])
 
   const goalInputHander = (enterdText) => {
