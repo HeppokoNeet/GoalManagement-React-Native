@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import GoalItem from './GoalItem'
-import { View, TextInput, Button, StyleSheet } from 'react-native'
+import { View, TextInput, Button, StyleSheet, Modal } from 'react-native'
 
 const GoalInput = (props) => {
   const [enterdGoal, setEnterdGoal] = useState([])
@@ -10,6 +10,7 @@ const GoalInput = (props) => {
   }
 
   return (
+    <Modal visible={props.visible} animationType="slide">
     <View style={styles.inputContainer}>
       <TextInput
         placeholder="目標を設定してください"
@@ -20,6 +21,7 @@ const GoalInput = (props) => {
 
       <Button title="追加" onPress={props.onAddGoal.bind(this, enterdGoal)} />
     </View>
+    </Modal>
   )
 }
 
