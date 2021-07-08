@@ -11,22 +11,27 @@ const GoalInput = (props) => {
 
   const addGoalHander = () => {
     props.onAddGoal(enterdGoal)
-    setEnterdGoal('');
+    setEnterdGoal('')
   }
 
   return (
     <Modal visible={props.visible} animationType="slide">
-    <View style={styles.inputContainer}>
-      <TextInput
-        placeholder="目標を設定してください"
-        style={styles.input}
-        onChangeText={goalInputHander}
-        value={enterdGoal.toString()}
-      />
-      <Button title="キャンセル" color="red" onPress={props.onCancel} />
-
-      <Button title="追加" onPress={addGoalHander} />
-    </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          placeholder="目標を設定してください"
+          style={styles.input}
+          onChangeText={goalInputHander}
+          value={enterdGoal.toString()}
+        />
+        <View style={styles.bunttonContainer}>
+          <View style={styles.button}>
+            <Button title="追加" onPress={addGoalHander} />
+          </View>
+          <View style={styles.button}>
+            <Button title="キャンセル" color="red" onPress={props.onCancel} />
+          </View>
+        </View>
+      </View>
     </Modal>
   )
 }
@@ -42,7 +47,15 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
     padding: 10,
-    marginBottom: 10
+    marginBottom: 10,
+  },
+  bunttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '60%',
+  },
+  button: {
+    width: '50%',
   },
 })
 
